@@ -1,22 +1,10 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 
 import PokemonCard from './PokemonCard';
 import Loading from '../Layout/Loading';
 import axios from 'axios';
 
-const StyledLink = styled(Link)`
-  text-decoration: none;
-  color: black;
 
-  &:focus,
-  &:hover,
-  &:visited,
-  &:link,
-  &:active {
-    text-decoration: none;
-  }
-`;
 
 
 export default class PokemonList extends Component {
@@ -44,7 +32,6 @@ export default class PokemonList extends Component {
     return (
 <div className="container-fluid" id="main">
 
-    <div className="row row-offcanvas row-offcanvas-left">
        
 
         {this.state.pokemon ? (
@@ -61,7 +48,6 @@ export default class PokemonList extends Component {
           <Loading />
         )}
       
-      </div>
       </div>
  
     );

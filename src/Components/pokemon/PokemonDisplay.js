@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
-import {NavLink } from 'react-router-dom';
+import { Link  } from 'react-router-dom';
+import '../../App.css';
 
 const TYPE_COLORS = {
   bug: 'B1C12E',
@@ -22,6 +23,9 @@ const TYPE_COLORS = {
   steel: 'B5B5C3',
   water: '3295F6'
 };
+
+
+
 
 export default class Pokemon extends Component {
   state = {
@@ -195,11 +199,10 @@ export default class Pokemon extends Component {
   addItem(nextProps, nextState)
   {
     var current = localStorage.getItem('contacts');
-    var currentIndex = localStorage.getItem('indexes');
+   // var currentIndex = localStorage.getItem('indexes');
 
     localStorage.setItem('contacts', current + ',' +  [this.state.name]);
-    localStorage.setItem('indexes', currentIndex + ',' +  [this.state.pokemonIndex]);
-
+//
   }
   
   render() {
@@ -417,9 +420,9 @@ export default class Pokemon extends Component {
                     <h6 className="float-right">Gender Ratio:</h6>
                   </div>
                   <div className="col-6">
-                    <div class="progress">
+                    <div className="progress">
                       <div
-                        class="progress-bar"
+                        className="progress-bar"
                         role="progressbar"
                         style={{
                           width: `${this.state.genderRatioFemale}%`,
@@ -432,7 +435,7 @@ export default class Pokemon extends Component {
                         <small>{this.state.genderRatioFemale}</small>
                       </div>
                       <div
-                        class="progress-bar"
+                        className="progress-bar"
                         role="progressbar"
                         style={{
                           width: `${this.state.genderRatioMale}%`,
@@ -478,19 +481,11 @@ export default class Pokemon extends Component {
               </div>
             </div>
           </div>
-          <div className="card-footer text-muted">
-            Data From{' '}
-            <a href="https://pokeapi.co/" target="_blank" className="card-link">
-              PokeAPI.co
-            </a>
+          <div className="card-footer text-muted text-center">
+       
+             <Link to="/" onClick={() => this.addItem()} className="btn third">Add Pokemon To List</Link>
 
-               <button
-            onClick={() => this.addItem()}
-          >
-          <NavLink to="/" className="navbar-brand nav-white">Add</NavLink>
-
-            &#43; 
-          </button>
+       
           
           </div>
         </div>

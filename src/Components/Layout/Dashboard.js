@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 
 import PokemonList from '../pokemon/PokemonList';
+import '../../App.css';
 
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 
 
@@ -19,56 +21,52 @@ const StyledLink = styled(Link)`
   }
 `;
 
+var title = {
+  color: 'white',
+  marginBottom: 2,
+  marginTop: 2,
+};
+
 
 export default class Dashboard extends Component {
 
   removeAll()
 {
     localStorage.clear('contacts');
+    window.location.reload(); 
+
 }
-componentDidUpdate(nextProps, nextState){
-  
-}
+
 renderUserMessage(){
   var namePokemon = localStorage.getItem('contacts');
 
   if (namePokemon != null) {
     var namePokemon = localStorage.getItem('contacts');
-    var indexs = localStorage.getItem('indexes');
 
     var res = namePokemon.split(",");
-    var resindex = indexs.split(",");
 
     const unique_numbers = Array.from(new Set(res));
-    const unique_indexs = Array.from(new Set(resindex));
 
-    const last = unique_numbers.slice(-1);
-    const indexes = unique_indexs.slice(-1);
+    const last = unique_numbers.slice(1);
 
-
-      console.log(last);
-      console.log(indexes);
 
     return (
       
-      last.map(function(last, indexss){
+      last.map(function(last, indexs){
 
-      return   <StyledLink to={`pokemon/${last}`}>
-      <li key={ indexss }>{last}</li>;
+      return   <StyledLink key={ indexs } className="myPokemon " to={`pokemon/${last}`}>
+      <li className="list" stylekey={ indexs }>{last}</li>
 </StyledLink>
-    }),
-
-    indexes.map(function(indexes, index){
-
-      return   <li key={ index }>{indexes}</li>;
     })
+
+
     );
 
     
 
        } else {
     return (
-      <h2>Hey man! Add some pokemon</h2>
+      <h2 style={title}>Hey man! Add some pokemon</h2>
     );
   }
 }
@@ -77,16 +75,15 @@ renderUserMessage(){
 
   render() {
     return (
-      <div className="row">
-              <div className="col">
-              <div className="col-md-3 col-lg-2 sidebar-offcanvas bg-light pl-0" id="sidebar" role="navigation">
-            My pokemon
+      <div className="row row-offcanvas row-offcanvas-left">
+              <div  className="col-md-3 col-lg-2 sidebar-offcanvas bg-dark pl-0 text-center" id="sidebar" role="navigation">
+           <p style={title}>My pokemon</p>
             <button
             onClick={() => this.removeAll()}
           >
             Clear all
           </button>
-            <ul className="nav flex-column sticky-top pl-0 pt-5 mt-3">
+            <ul className="nav flex-column sticky-top pl-0 pt-5 mt-3 ">
             { this.renderUserMessage() }
 
             </ul>
@@ -96,7 +93,7 @@ renderUserMessage(){
               <PokemonList/>
               </div>
                 </div>
-        </div>
+     
     )
   }
 }

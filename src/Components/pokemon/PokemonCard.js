@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import styled from 'styled-components';
-import SimpleStorage from "react-simple-storage";
 
 import spinner from '../Layout/spinner.gif';
 
@@ -69,7 +68,6 @@ export default class PokemonCard extends Component {
     return (
 
       <div className="col-md-3 col-sm-6 mb-5">     
-       <SimpleStorage parent={this} />
        <ul>
             {this.state.list.map(item => {
               return (
@@ -90,7 +88,7 @@ export default class PokemonCard extends Component {
               <img
                 src={spinner}
                 style={{ width: '5em', height: '5em' }}
-                className="card-img-top rounded mx-auto d-block mt-2"
+                className="card-img-top rounded mx-auto d-block mt-2" alt="loading"
               />
             ) : null}
             <Sprite
