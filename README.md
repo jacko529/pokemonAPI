@@ -30,4 +30,11 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 ### `notes on app`
 
 
-One of the requirements is missing, lost track of time and have many assignments at the moment.
+One of the requirements is missing, lost track of time and have many assignments at the moment. (comparing stats)
+
+I application is made with react but no redux.
+
+Also using : 
+- bootstrap 
+- react-router-dom
+- axios

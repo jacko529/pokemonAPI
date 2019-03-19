@@ -36,7 +36,16 @@ export default class Dashboard extends Component {
     window.location.reload(); 
 
 }
-
+/**
+ * get the contents of the local stoage
+ * 
+ * split the string by commas
+ * 
+ * make sure only unique names in the array 
+ * 
+ * slice the first entry which for some reason was null
+ * 
+ *  */
 renderUserMessage(){
   var namePokemon = localStorage.getItem('contacts');
 

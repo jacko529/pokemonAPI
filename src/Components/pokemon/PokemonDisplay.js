@@ -196,7 +196,12 @@ export default class Pokemon extends Component {
     });
   }
 
-  addItem(nextProps, nextState)
+  /**
+   * adding pokemon name to the local storage to get later 
+   * 
+   * also dragging the current storage to add to it 
+   */
+  addItem()
   {
     var current = localStorage.getItem('contacts');
    // var currentIndex = localStorage.getItem('indexes');

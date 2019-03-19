@@ -12,9 +12,6 @@ export default class PokemonList extends Component {
   state = {
     url: 'https://pokeapi.co/api/v2/pokemon/',
     pokemon: null,
-    newItem: "",
-    list: [],
-    unique_numbers: "",
     val: 0
   };
   onTextChange(val) {
