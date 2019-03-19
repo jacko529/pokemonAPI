@@ -1,23 +1,52 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import PokemonCard from './PokemonCard';
 import Loading from '../Layout/Loading';
 import axios from 'axios';
 
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: black;
+
+  &:focus,
+  &:hover,
+  &:visited,
+  &:link,
+  &:active {
+    text-decoration: none;
+  }
+`;
+
+
 export default class PokemonList extends Component {
+
   state = {
     url: 'https://pokeapi.co/api/v2/pokemon/',
-    pokemon: null
+    pokemon: null,
+    newItem: "",
+    list: [],
+    unique_numbers: "",
+    val: 0
   };
-
+  onTextChange(val) {
+    var newVal = val + this.state.val;
+    this.setState({val: newVal});
+}
   async componentDidMount() {
     const res = await axios.get(this.state.url);
     this.setState({ pokemon: res.data['results'] });
   }
 
+
   render() {
+
     return (
-      <div>
+<div className="container-fluid" id="main">
+
+    <div className="row row-offcanvas row-offcanvas-left">
+       
+
         {this.state.pokemon ? (
           <div className="row">
             {this.state.pokemon.map(pokemon => (
@@ -31,7 +60,10 @@ export default class PokemonList extends Component {
         ) : (
           <Loading />
         )}
+      
       </div>
+      </div>
+ 
     );
   }
 }

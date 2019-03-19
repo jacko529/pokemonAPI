@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
+import {NavLink } from 'react-router-dom';
 
 const TYPE_COLORS = {
   bug: 'B1C12E',
@@ -128,6 +129,8 @@ export default class Pokemon extends Component {
       })
       .join(', ');
 
+
+  
     // Get Pokemon Description .... Is from a different end point uggh
     await Axios.get(pokemonSpeciesUrl).then(res => {
       let description = '';
@@ -161,7 +164,9 @@ export default class Pokemon extends Component {
         genderRatioMale,
         catchRate,
         eggGroups,
-        hatchSteps
+        hatchSteps,
+        newItem: "",
+        list: []
       });
     });
 
@@ -169,6 +174,7 @@ export default class Pokemon extends Component {
       imageUrl,
       pokemonIndex,
       name,
+      contacts: [],
       types,
       stats: {
         hp,
@@ -186,6 +192,16 @@ export default class Pokemon extends Component {
     });
   }
 
+  addItem(nextProps, nextState)
+  {
+    var current = localStorage.getItem('contacts');
+    var currentIndex = localStorage.getItem('indexes');
+
+    localStorage.setItem('contacts', current + ',' +  [this.state.name]);
+    localStorage.setItem('indexes', currentIndex + ',' +  [this.state.pokemonIndex]);
+
+  }
+  
   render() {
     return (
       <div className="col">
@@ -375,7 +391,7 @@ export default class Pokemon extends Component {
           </div>
           <hr />
           <div className="card-body">
-            <h5 class="card-title text-center">Profile</h5>
+            <h5 className="card-title text-center">Profile</h5>
             <div className="row">
               <div className="col-md-6">
                 <div className="row">
@@ -462,11 +478,20 @@ export default class Pokemon extends Component {
               </div>
             </div>
           </div>
-          <div class="card-footer text-muted">
+          <div className="card-footer text-muted">
             Data From{' '}
             <a href="https://pokeapi.co/" target="_blank" className="card-link">
               PokeAPI.co
             </a>
+
+               <button
+            onClick={() => this.addItem()}
+          >
+          <NavLink to="/" className="navbar-brand nav-white">Add</NavLink>
+
+            &#43; 
+          </button>
+          
           </div>
         </div>
       </div>

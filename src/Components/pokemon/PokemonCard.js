@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import styled from 'styled-components';
+import SimpleStorage from "react-simple-storage";
 
 import spinner from '../Layout/spinner.gif';
 
@@ -39,13 +40,18 @@ const StyledLink = styled(Link)`
 `;
 
 export default class PokemonCard extends Component {
+
   state = {
     name: '',
     imageUrl: '',
     pokemonIndex: '',
     imageLoading: true,
+    newItem: "",
+    list: [],
     toManyRequests: false
+
   };
+ 
 
   componentDidMount() {
     const { name, url } = this.props;
@@ -56,10 +62,27 @@ export default class PokemonCard extends Component {
 
     this.setState({ name, imageUrl, pokemonIndex });
   }
+ 
 
   render() {
+
     return (
-      <div className="col-md-3 col-sm-6 mb-5">
+
+      <div className="col-md-3 col-sm-6 mb-5">     
+       <SimpleStorage parent={this} />
+       <ul>
+            {this.state.list.map(item => {
+              return (
+                <li key={item.id}>
+                  {item.value}
+                  <button onClick={() => this.deleteItem(item.id)}>
+                    Remove
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+
         <StyledLink to={`pokemon/${this.state.pokemonIndex}`}>
           <Card className="card">
             <h5 className="card-header">{this.state.pokemonIndex}</h5>
@@ -101,6 +124,7 @@ export default class PokemonCard extends Component {
             </div>
           </Card>
         </StyledLink>
+   
       </div>
     );
   }
